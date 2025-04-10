@@ -57,14 +57,12 @@ public class LoginController implements Initializable {
         loader.setLocation(getClass().getResource("/signup.fxml"));
         try {
             loader.load();
+            Parent root = loader.getRoot();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
         } catch (IOException ex) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        Parent root = loader.getRoot();
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.showAndWait();
     }
-
-    
 }

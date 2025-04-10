@@ -1,5 +1,6 @@
 package br.jus.trt12.paulopinheiro.todoapp.control;
 
+import br.jus.trt12.paulopinheiro.todoapp.database.DatabaseHandler;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -36,6 +37,16 @@ public class SignupController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        DatabaseHandler databaseHandler = new DatabaseHandler();
+
+        signUpButton.setOnAction(event-> {
+            databaseHandler.signUpUser(signUpFirstName.getText(),
+                                       signUpLastName.getText(),
+                                       signUpUsername.getText(),
+                                       signUpPassword.getText(),
+                                       signUpLocation.getText(),
+                                       "Male");
+        });
     }    
     
 }
