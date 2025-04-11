@@ -2,6 +2,7 @@ package br.jus.trt12.paulopinheiro.todoapp.control;
 
 import br.jus.trt12.paulopinheiro.todoapp.database.DatabaseHandler;
 import br.jus.trt12.paulopinheiro.todoapp.model.User;
+import br.jus.trt12.paulopinheiro.todoapp.view.animations.Shaker;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -10,6 +11,7 @@ import java.util.logging.Logger;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -46,17 +48,24 @@ public class LoginController implements Initializable {
 
     private void loginUser(String username, String password) {
             if (username.isBlank() || password.isBlank()) {
-                System.out.println("Enter both username and password"); return;
+                System.out.println("Enter both username and password");
+                shake(this.loginUsername);
+                shake(this.loginPassword);
+                return;
             }
 
             User user = databaseHandler.getUserFromUsername(username);
 
             if (user==null) {
-                System.out.println("There's no user " + username); return;
+                System.out.println("There's no user " + username);
+                shake(this.loginUsername);
+                return;
             }
 
             if (!password.equals(user.getPassword())) {
-                System.out.println("Wrong password"); return;
+                System.out.println("Wrong password");
+                shake(this.loginPassword);
+                return;
             }
 
             System.out.println("Welcome, " + user.getFirstName());
@@ -74,5 +83,10 @@ public class LoginController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    private void shake(Node node) {
+        Shaker shaker = new Shaker(node);
+        shaker.shake();
     }
 }
