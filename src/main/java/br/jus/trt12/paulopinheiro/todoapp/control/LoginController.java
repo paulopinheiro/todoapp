@@ -68,12 +68,27 @@ public class LoginController implements Initializable {
                 return;
             }
 
+            loadTasksScreen();
             System.out.println("Welcome, " + user.getFirstName());
     }
 
     private void loadSignupScreen() {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/signup.fxml"));
+        try {
+            loader.load();
+            Parent root = loader.getRoot();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+        } catch (IOException ex) {
+            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void loadTasksScreen() {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/addItem.fxml"));
         try {
             loader.load();
             Parent root = loader.getRoot();

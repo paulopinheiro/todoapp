@@ -22,9 +22,9 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <ImageView fx:id="addButton" fitHeight="72.0" fitWidth="318.0" layoutX="315.0" layoutY="253.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="addButton" fitHeight="72.0" fitWidth="318.0" layoutX="309.0" layoutY="252.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../../resources/images/icons/add_circle_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" />
+            <Image url="@images/icons/icons8-add-50.png" />
          </image>
       </ImageView>
    </children>

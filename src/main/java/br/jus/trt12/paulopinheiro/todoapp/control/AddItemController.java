@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 
 public class AddItemController implements Initializable {
     @FXML
@@ -12,7 +13,9 @@ public class AddItemController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        addButton.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            System.out.println("Mouse clicked on Add icon");
+        });
     }    
     
 }
