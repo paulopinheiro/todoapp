@@ -1,5 +1,7 @@
 package br.jus.trt12.paulopinheiro.todoapp.control;
 
+import br.jus.trt12.paulopinheiro.todoapp.database.DatabaseHandler;
+import br.jus.trt12.paulopinheiro.todoapp.model.User;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -18,26 +20,21 @@ import javafx.stage.Stage;
 public class LoginController implements Initializable {
     @FXML
     private Button loginButton;
-
     @FXML
     private PasswordField loginPassword;
-
     @FXML
     private Button loginSignupButton;
-
     @FXML
     private TextField loginUsername;
 
+    private DatabaseHandler databaseHandler;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        databaseHandler = new DatabaseHandler();
+
         loginButton.setOnAction(event -> {
-            String loginText = loginUsername.getText().trim();
-            String passwordText = loginPassword.getText().trim();
-            if (!loginText.equals("") && !passwordText.equals("")) {
-                loginUser(loginText,passwordText);
-            } else {
-                System.out.println("Login error");
-            }
+            loginUser(loginUsername.getText(),loginPassword.getText());
         });
 
         loginSignupButton.setOnAction(event -> {
@@ -47,9 +44,22 @@ public class LoginController implements Initializable {
         });
     }
 
-    private void loginUser(String loginText, String passwordText) {
-        // If user exists take it to the addItem screen
-        
+    private void loginUser(String username, String password) {
+            if (username.isBlank() || password.isBlank()) {
+                System.out.println("Enter both username and password"); return;
+            }
+
+            User user = databaseHandler.getUserFromUsername(username);
+
+            if (user==null) {
+                System.out.println("There's no user " + username); return;
+            }
+
+            if (!password.equals(user.getPassword())) {
+                System.out.println("Wrong password"); return;
+            }
+
+            System.out.println("Welcome, " + user.getFirstName());
     }
 
     private void loadSignupScreen() {

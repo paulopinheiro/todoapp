@@ -29,9 +29,11 @@ public class SignupController implements Initializable {
     @FXML
     private TextField signUpUsername;
 
+    private DatabaseHandler databaseHandler;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        DatabaseHandler databaseHandler = new DatabaseHandler();
+        databaseHandler = new DatabaseHandler();
 
         signUpButton.setOnAction(event-> {
             databaseHandler.signUpUser(getUser());
