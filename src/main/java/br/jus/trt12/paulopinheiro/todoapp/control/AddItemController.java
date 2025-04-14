@@ -33,6 +33,7 @@ public class AddItemController implements Initializable {
             Animations.fadeOut(addButton);
             Animations.fadeOut(noTasksLabel);
             AnchorPane formAnchorPane = FXMLLoader.load(getClass().getResource("/addItemForm.fxml"));
+            Animations.fadeIn(formAnchorPane);
             rootAnchorPane.getChildren().setAll(formAnchorPane);
         } catch (IOException ex) {
         }
