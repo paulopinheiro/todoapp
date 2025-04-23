@@ -1,5 +1,6 @@
 package br.jus.trt12.paulopinheiro.todoapp.database;
 
+import br.jus.trt12.paulopinheiro.todoapp.model.Task;
 import br.jus.trt12.paulopinheiro.todoapp.model.User;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -53,7 +54,8 @@ public class DatabaseHandler extends Configs {
             ResultSet rs = preparedStatement.executeQuery();
 
             if (rs.next()) {
-                user = new User(rs.getString(Const.USERS_FIRSTNAME),
+                user = new User(rs.getInt(Const.USERS_USERID),
+                                rs.getString(Const.USERS_FIRSTNAME),
                                 rs.getString(Const.USERS_LASTNAME),
                                 rs.getString(Const.USERS_USERNAME),
                                 rs.getString(Const.USERS_PASSWORD),
@@ -64,5 +66,24 @@ public class DatabaseHandler extends Configs {
             Logger.getLogger(DatabaseHandler.class.getName()).log(Level.SEVERE, null, ex);
         }
         return user;
+    }
+
+    public void insertTask(Task task) {
+        try {
+            String insert = "INSERT INTO " + Const.TASKS_TABLE + "("
+                    + Const.TASKS_USERID + ", "
+                    + Const.TASK_TASK + ", "
+                    + Const.TASKS_DESCRIPTION + ", "
+                    + Const.TASKS_DATECREATED + ") VALUES(?,?,?,?)";
+            PreparedStatement preparedStatement = getDbConnection().prepareStatement(insert);
+            preparedStatement.setInt(1, task.getUserid());
+            preparedStatement.setString(2, task.getTask());
+            preparedStatement.setString(3,task.getDescription());
+            preparedStatement.setTimestamp(4, task.getDateCreated());
+
+            preparedStatement.executeUpdate();
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(DatabaseHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

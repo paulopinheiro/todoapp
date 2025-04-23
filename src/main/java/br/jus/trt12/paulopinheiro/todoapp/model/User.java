@@ -1,6 +1,7 @@
 package br.jus.trt12.paulopinheiro.todoapp.model;
 
 public class User {
+    private Integer userid;
     private String firstName;
     private String lastName;
     private String userName;
@@ -10,7 +11,8 @@ public class User {
 
     public User() {}
 
-    public User(String firstName, String lastName, String userName, String password, String location, String gender) {
+    public User(Integer userid, String firstName, String lastName, String userName, String password, String location, String gender) {
+        this.userid = userid;
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
@@ -65,5 +67,9 @@ public class User {
 
     public String getGender() {
         return gender;
+    }
+
+    public Integer getUserid() {
+        return userid;
     }
 }

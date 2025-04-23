@@ -6,8 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" fx:id="formRootPane" prefHeight="400.0" prefWidth="700.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="br.jus.trt12.paulopinheiro.todoapp.control.AddItemFormController">
+<AnchorPane id="AnchorPane" fx:id="formRootPane" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.jus.trt12.paulopinheiro.todoapp.control.AddItemFormController">
    <children>
       <TextField fx:id="taskField" layoutX="102.0" layoutY="124.0" prefHeight="54.0" prefWidth="498.0" promptText="Task">
          <font>
@@ -19,7 +18,7 @@
             <Font size="24.0" />
          </font>
       </TextField>
-      <Button fx:id="saveTaskBUtton" layoutX="276.0" layoutY="309.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="151.0" style="-fx-background-color: #424242;" text="Save Task" textFill="WHITE">
+      <Button fx:id="saveTaskButton" layoutX="276.0" layoutY="309.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="151.0" style="-fx-background-color: #424242;" text="Save Task" textFill="WHITE">
          <font>
             <Font size="24.0" />
          </font>

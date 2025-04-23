@@ -2,7 +2,7 @@ package br.jus.trt12.paulopinheiro.todoapp.control;
 
 import br.jus.trt12.paulopinheiro.todoapp.database.DatabaseHandler;
 import br.jus.trt12.paulopinheiro.todoapp.model.User;
-import br.jus.trt12.paulopinheiro.todoapp.view.animations.Shaker;
+import br.jus.trt12.paulopinheiro.todoapp.control.animations.Shaker;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -68,8 +68,7 @@ public class LoginController implements Initializable {
                 return;
             }
 
-            loadTasksScreen();
-            System.out.println("Welcome, " + user.getFirstName());
+            loadTasksScreen(user);
     }
 
     private void loadSignupScreen() {
@@ -86,11 +85,13 @@ public class LoginController implements Initializable {
         }
     }
 
-    private void loadTasksScreen() {
+    private void loadTasksScreen(User user) {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/addItem.fxml"));
         try {
             loader.load();
+            AddItemController addItemController = loader.getController();
+            addItemController.setUser(user);
             Parent root = loader.getRoot();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));

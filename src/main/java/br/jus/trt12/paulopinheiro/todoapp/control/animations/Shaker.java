@@ -1,4 +1,4 @@
-package br.jus.trt12.paulopinheiro.todoapp.view.animations;
+package br.jus.trt12.paulopinheiro.todoapp.control.animations;
 
 import javafx.animation.TranslateTransition;
 import javafx.scene.Node;

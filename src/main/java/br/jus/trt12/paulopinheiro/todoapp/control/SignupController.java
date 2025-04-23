@@ -41,12 +41,14 @@ public class SignupController implements Initializable {
     }
 
     private User getUser() {
-        User user = new User(signUpFirstName.getText(),
-                             signUpLastName.getText(),
-                             signUpUsername.getText(),
-                             signUpPassword.getText(),
-                             signUpLocation.getText(),
-                             getGender());
+        User user = new User();
+        user.setFirstName(signUpFirstName.getText());
+        user.setLastName(signUpLastName.getText());
+        user.setUserName(signUpUsername.getText());
+        user.setPassword(signUpPassword.getText());
+        user.setLocation(signUpLocation.getText());
+        user.setGender(getGender());
+
         return user;
     }
 
