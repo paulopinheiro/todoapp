@@ -68,7 +68,7 @@ public class LoginController implements Initializable {
                 return;
             }
 
-            loadTasksScreen(user);
+            loadTaskCrudFormScreen(user);
     }
 
     private void loadSignupScreen() {
@@ -85,13 +85,14 @@ public class LoginController implements Initializable {
         }
     }
 
-    private void loadTasksScreen(User user) {
+    private void loadTaskCrudFormScreen(User user) {
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/addItem.fxml"));
+        loader.setLocation(getClass().getResource("/taskCrudForm.fxml"));
         try {
+            TaskCrudFormController taskCrudFormController = new TaskCrudFormController(user);
+            loader.setController(taskCrudFormController);
             loader.load();
-            AddItemController addItemController = loader.getController();
-            addItemController.setUser(user);
+
             Parent root = loader.getRoot();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
@@ -100,6 +101,22 @@ public class LoginController implements Initializable {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+//
+//    private void loadTasksScreen(User user) {
+//        FXMLLoader loader = new FXMLLoader();
+//        loader.setLocation(getClass().getResource("/addItem.fxml"));
+//        try {
+//            loader.load();
+//            AddItemController addItemController = loader.getController();
+//            addItemController.setUser(user);
+//            Parent root = loader.getRoot();
+//            Stage stage = new Stage();
+//            stage.setScene(new Scene(root));
+//            stage.showAndWait();
+//        } catch (IOException ex) {
+//            Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
 
     private void shake(Node node) {
         Shaker shaker = new Shaker(node);

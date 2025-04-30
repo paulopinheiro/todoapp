@@ -4,11 +4,23 @@ import java.sql.Timestamp;
 import java.time.Instant;
 
 public class Task {
+    private Integer taskid;
     private Integer userid;
     private String task;
     private final Timestamp dateCreated;
     private String description;
 
+    public Task() {
+        this.dateCreated = Timestamp.from(Instant.now());
+    }
+
+    public Task(Integer taskid, Integer userid, String task, String description, Timestamp dateCreated) {
+        this.taskid = taskid;
+        this.userid = userid;
+        this.task = task;
+        this.description = description;
+        this.dateCreated = dateCreated;
+    }
     public Task(Integer userid, String task, String description) {
         this.userid = userid;
         this.task = task;
@@ -42,5 +54,14 @@ public class Task {
 
     public void setUserid(Integer userid) {
         this.userid = userid;
+    }
+
+    public Integer getTaskid() {
+        return taskid;
+    }
+
+    @Override
+    public String toString() {
+        return task;
     }
 }
